@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3078085429BD9BC40040B5D8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078085329BD9BC40040B5D8 /* main.cpp */; };
+		3078085C29BD9BF50040B5D8 /* Movie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078085A29BD9BF50040B5D8 /* Movie.cpp */; };
+		3078085F29BD9C240040B5D8 /* MovieDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078085D29BD9C230040B5D8 /* MovieDatabase.cpp */; };
+		3078086229BD9C5B0040B5D8 /* Recommender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078086029BD9C5B0040B5D8 /* Recommender.cpp */; };
+		3078086629BD9C9C0040B5D8 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078086429BD9C9C0040B5D8 /* User.cpp */; };
+		3078086929BD9CC00040B5D8 /* UserDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3078086729BD9CC00040B5D8 /* UserDatabase.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,19 @@
 /* Begin PBXFileReference section */
 		3078085029BD9BC40040B5D8 /* Proj4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Proj4; sourceTree = BUILT_PRODUCTS_DIR; };
 		3078085329BD9BC40040B5D8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3078085A29BD9BF50040B5D8 /* Movie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movie.cpp; sourceTree = "<group>"; };
+		3078085B29BD9BF50040B5D8 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		3078085D29BD9C230040B5D8 /* MovieDatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MovieDatabase.cpp; sourceTree = "<group>"; };
+		3078085E29BD9C230040B5D8 /* MovieDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieDatabase.h; sourceTree = "<group>"; };
+		3078086029BD9C5B0040B5D8 /* Recommender.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Recommender.cpp; sourceTree = "<group>"; };
+		3078086129BD9C5B0040B5D8 /* Recommender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recommender.h; sourceTree = "<group>"; };
+		3078086329BD9C860040B5D8 /* treemm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = treemm.h; sourceTree = "<group>"; };
+		3078086429BD9C9C0040B5D8 /* User.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = User.cpp; sourceTree = "<group>"; };
+		3078086529BD9C9C0040B5D8 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		3078086729BD9CC00040B5D8 /* UserDatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserDatabase.cpp; sourceTree = "<group>"; };
+		3078086829BD9CC00040B5D8 /* UserDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDatabase.h; sourceTree = "<group>"; };
+		3078086B29BD9DB80040B5D8 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
+		3078086C29BD9DC00040B5D8 /* movies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movies.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,19 @@
 			isa = PBXGroup;
 			children = (
 				3078085329BD9BC40040B5D8 /* main.cpp */,
+				3078085A29BD9BF50040B5D8 /* Movie.cpp */,
+				3078085B29BD9BF50040B5D8 /* Movie.h */,
+				3078085D29BD9C230040B5D8 /* MovieDatabase.cpp */,
+				3078085E29BD9C230040B5D8 /* MovieDatabase.h */,
+				3078086729BD9CC00040B5D8 /* UserDatabase.cpp */,
+				3078086829BD9CC00040B5D8 /* UserDatabase.h */,
+				3078086429BD9C9C0040B5D8 /* User.cpp */,
+				3078086529BD9C9C0040B5D8 /* User.h */,
+				3078086329BD9C860040B5D8 /* treemm.h */,
+				3078086029BD9C5B0040B5D8 /* Recommender.cpp */,
+				3078086129BD9C5B0040B5D8 /* Recommender.h */,
+				3078086B29BD9DB80040B5D8 /* users.txt */,
+				3078086C29BD9DC00040B5D8 /* movies.txt */,
 			);
 			path = Proj4;
 			sourceTree = "<group>";
@@ -119,7 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3078085C29BD9BF50040B5D8 /* Movie.cpp in Sources */,
+				3078086929BD9CC00040B5D8 /* UserDatabase.cpp in Sources */,
+				3078086229BD9C5B0040B5D8 /* Recommender.cpp in Sources */,
+				3078085F29BD9C240040B5D8 /* MovieDatabase.cpp in Sources */,
 				3078085429BD9BC40040B5D8 /* main.cpp in Sources */,
+				3078086629BD9C9C0040B5D8 /* User.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
