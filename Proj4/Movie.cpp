@@ -6,42 +6,40 @@ using namespace std;
 
 Movie::Movie(const string& id, const string& title, const string& release_year,
              const vector<string>& directors, const vector<string>& actors,
-             const vector<string>& genres, float rating)
-{
-    // Replace this line with correct code.
-}
+             const vector<string>& genres, float rating): id(id), name(title), yr(release_year), dirs(directors), actors(actors), genres(genres), rating(rating)
+{}
 
 string Movie::get_id() const
 {
-    return "DUMMY";  // Replace this line with correct code.
+    return id;
 }
 
 string Movie::get_title() const
 {
-    return "DUMMY";  // Replace this line with correct code.
+    return name;
 }
 
 string Movie::get_release_year() const
 {
-    return "DUMMY";  // Replace this line with correct code.
+    return yr;
 }
 
 float Movie::get_rating() const
 {
-    return -999;  // Replace this line with correct code.
+    return rating;
 }
 
 vector<string> Movie::get_directors() const
 {
-    return vector<string>();  // Replace this line with correct code.
+    return dirs;
 }
 
 vector<string> Movie::get_actors() const
 {
-    return vector<string>();  // Replace this line with correct code.
+    return actors;
 }
 
 vector<string> Movie::get_genres() const
 {
-    return vector<string>();  // Replace this line with correct code.
+    return genres;
 }

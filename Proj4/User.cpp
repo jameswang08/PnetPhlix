@@ -5,22 +5,20 @@
 using namespace std;
 
 User::User(const string& full_name, const string& email,
-           const vector<string>& watch_history)
-{
-    // Replace this line with correct code.
-}
+           const vector<string>& watch_history): name(full_name), email(email), watchHist(watch_history)
+{}
 
 string User::get_full_name() const
 {
-    return "DUMMY";  // Replace this line with correct code.
+    return name;
 }
 
 string User::get_email() const
 {
-    return "DUMMY";  // Replace this line with correct code.
+    return email;
 }
 
 vector<string> User::get_watch_history() const
 {
-    return vector<string>();  // Replace this line with correct code.
+    return watchHist;
 }

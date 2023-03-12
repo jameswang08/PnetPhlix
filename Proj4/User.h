@@ -12,8 +12,11 @@ class User
     std::string get_full_name() const;
     std::string get_email() const;
     std::vector<std::string> get_watch_history() const;
-
+    
   private:
+    std::string name; //User name
+    std::string email; //User email address
+    std::vector<std::string> watchHist; //User watch history
 };
 
 #endif // USER_INCLUDED

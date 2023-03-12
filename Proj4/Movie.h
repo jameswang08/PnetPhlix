@@ -21,6 +21,13 @@ class Movie
     std::vector<std::string> get_genres() const;
 
   private:
+    std::string id; //Move ID
+    std::string name; //Move name
+    std::string yr; //Movie Release Year
+    std::vector<std::string> dirs; //Movie directors
+    std::vector<std::string> actors; //Movie actors
+    std::vector<std::string> genres; //Movie genres
+    float rating; //Movie rating
 };
 
 #endif // MOVIE_INCLUDED
