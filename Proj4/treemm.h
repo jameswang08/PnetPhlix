@@ -4,7 +4,28 @@
 template <typename KeyType, typename ValueType>
 class TreeMultimap
 {
+  private:
+    struct Node{
+        KeyType mKey;
+        std::vector<ValueType> values;
+        Node* left;
+       Node* right;
+    };
+  
+    Node* root;
+  
+    //Recursively delete each node
+    void deleteNode(Node* aNode){
+        if(aNode==nullptr){
+            delete aNode;
+            return;
+        }
+        if(aNode->left != nullptr) deleteNode(aNode->left);
+        if(aNode->right != nullptr) deleteNode(aNode->left);
+        delete aNode;
+    }
   public:
+
     class Iterator
     {
       public:
@@ -24,11 +45,11 @@ class TreeMultimap
 
         ValueType& get_value() const
         {
-            if(is_valid){
-                ValueType val = vecPointer[n];
-                return val;
+            if(is_valid()){
+                return (*(vecPointer))[n];
             }
-            //Won't do anything if iterator is invalid
+            //If iterator isn't valid, throw error
+            throw 1;
         }
 
         bool is_valid() const
@@ -61,9 +82,9 @@ class TreeMultimap
     void insert(const KeyType& key, const ValueType& value)
     {
         Node* newNode = new Node;
-        newNode->nKey = key;
+        newNode->mKey = key;
         ValueType val = value;
-        newNode->values.insert(val);
+        newNode->values.push_back(val);
         newNode->left = nullptr;
         newNode->right = nullptr;
         //Creates root for bst if tree is empty
@@ -74,7 +95,7 @@ class TreeMultimap
             //Go down bst to find where to insert key/value. If a key already exists, add value to key
             for(Node* p = root;;){
                 //Check right node
-                if(key > p->nKey){
+                if(key > p->mKey){
                     //If right node is empty, then add new node with key/value
                     if(p->right==nullptr){
                         p->right = newNode;
@@ -83,7 +104,7 @@ class TreeMultimap
                     else p=p->right;
                 }
                 //Check left node
-                else if(key < p->nKey){
+                else if(key < p->mKey){
                     //If left node is empty, then add new node with key/value
                     if(p->left==nullptr){
                         p->left = newNode;
@@ -106,46 +127,33 @@ class TreeMultimap
     {
         for(Node* p = root;;){
             //Check right node
-            if(key > p->nKey){
+            if(key > p->mKey){
                 //If right node is empty, return invalid iterator
                 if(p->right==nullptr){
-                    return TreeMultimap<KeyType,ValueType>::Iterator it;
+                    Iterator it;
+                    return it;
                 }
                 //Otherwise take right node and check again
                 else p=p->right;
             }
             //Check left node
-            else if(key < p->nKey){
+            else if(key < p->mKey){
                 //If left node is empty, return invalid iterator
                 if(p->left==nullptr){
-                    return TreeMultimap<KeyType,ValueType>::Iterator it;
-                }
+                    Iterator it;
+                    return it;                }
                 //Otherwise take left node and check again
                 else p=p->left;
             }
             //If key is found, return an iterator pointing to that key's values vector
             else{
-                return TreeMultimap<KeyType,ValueType>::Iterator it(p);
+                Iterator it(p);
+                return it;
             }
         }
     }
 
-  private:
-    struct Node{
-        KeyType nKey;
-        std::vector<ValueType> values;
-        Node* left;
-        Node* right;
-    };
-    
-    Node* root;
-    
-    //Recursively delete each node
-    void deleteNode(Node* aNode){
-        if(aNode->left != nullptr) deleteNode(aNode->left);
-        if(aNode->right != nullptr) deleteNode(aNode->left);
-        delete aNode;
-    }
+
     
 };
 
