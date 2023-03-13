@@ -8,27 +8,44 @@ class TreeMultimap
     class Iterator
     {
       public:
-        Iterator()
+        //Default constructor that creates invalid iterator
+        Iterator(){
+            vecPointer = nullptr;
+        }
+        
+        Iterator(Node* aNode)
         {
-            // Replace this line with correct code.
+            if(aNode==nullptr) vecPointer = nullptr;
+            else{
+                vecPointer = &(aNode->values);
+                n=0;
+            }
         }
 
         ValueType& get_value() const
         {
-            throw 1;  // Replace this line with correct code.
+            if(is_valid){
+                ValueType val = vecPointer[n];
+                return val;
+            }
+            //Won't do anything if iterator is invalid
         }
 
         bool is_valid() const
         {
-            return false;  // Replace this line with correct code.
+            //Invalid iterator if it doesn't point to anything, or if it is past last element of array
+            if(vecPointer==nullptr || n>=vecPointer->size()) return false;
+            return true;
         }
 
         void advance()
         {
-            // Replace this line with correct code.
+            n++;
         }
 
       private:
+        std::vector<ValueType>* vecPointer; //Pointer to vector of values
+        int n; //Tracks which element of vector iterator is pointing to
     };
 
     TreeMultimap()
@@ -87,7 +104,30 @@ class TreeMultimap
 
     Iterator find(const KeyType& key) const
     {
-        return Iterator();  // Replace this line with correct code.
+        for(Node* p = root;;){
+            //Check right node
+            if(key > p->nKey){
+                //If right node is empty, return invalid iterator
+                if(p->right==nullptr){
+                    return TreeMultimap<KeyType,ValueType>::Iterator it;
+                }
+                //Otherwise take right node and check again
+                else p=p->right;
+            }
+            //Check left node
+            else if(key < p->nKey){
+                //If left node is empty, return invalid iterator
+                if(p->left==nullptr){
+                    return TreeMultimap<KeyType,ValueType>::Iterator it;
+                }
+                //Otherwise take left node and check again
+                else p=p->left;
+            }
+            //If key is found, return an iterator pointing to that key's values vector
+            else{
+                return TreeMultimap<KeyType,ValueType>::Iterator it(p);
+            }
+        }
     }
 
   private:
