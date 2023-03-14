@@ -9,7 +9,7 @@ class TreeMultimap
         KeyType mKey;
         std::vector<ValueType> values;
         Node* left;
-       Node* right;
+        Node* right;
     };
   
     Node* root;
