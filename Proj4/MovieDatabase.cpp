@@ -101,9 +101,6 @@ bool MovieDatabase::load(const string& filename)
         infile >> rating;
         infile.ignore(10000,'\n');
         
-        //Consume empty line seperating users, if there is one
-        if(!getline(infile,str)) break;
-        
         //Add movie object to trees
         Movie* newMovie = new Movie(id,nm,yr,directors,actors,genres,rating);
         
@@ -141,6 +138,9 @@ bool MovieDatabase::load(const string& filename)
         
         //Add movie object to list of movies that were dynamically allocated
         createdMovies.push_back(newMovie);
+        
+        //Consume empty line seperating users, if there is one
+        if(!getline(infile,str)) break;
     }while(getline(infile,id));
     
     return true;

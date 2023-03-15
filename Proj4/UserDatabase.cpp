@@ -46,13 +46,13 @@ bool UserDatabase::load(const string& filename)
             movieIDs.push_back(movie);
         }
         
-        //Consume empty line seperating users, if there is one
-        string str;
-        if(!getline(infile,str)) break;
-        
         //Add this user to tree of users
         User newUser = User(uName, email, movieIDs);
         userDB.insert(email,newUser);
+        
+        //Consume empty line seperating users, if there is one
+        string str;
+        if(!getline(infile,str)) break;
     }while(getline(infile,uName));
     return true;
 }
