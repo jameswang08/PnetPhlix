@@ -128,7 +128,7 @@ int main() {
     
     //Userdatabase Tests
     UserDatabase udb;
-    if (!udb.load(USER_DATAFILE))  // In skeleton, load always return false
+    if (!udb.load(USER_DATAFILE))
     {
         cout << "Failed to load user data file " << USER_DATAFILE << "!" << endl;
         return 1;
@@ -146,4 +146,7 @@ int main() {
         else
             cout << "Found " << u->get_full_name() << endl;
     }
+    
+    //MovieDatabase Tests
+    
 }

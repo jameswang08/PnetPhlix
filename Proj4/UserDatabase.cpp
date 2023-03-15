@@ -8,8 +8,6 @@ using namespace std;
 
 UserDatabase::UserDatabase()
 {
-   //Create empty tree to store user data
-    userDB = TreeMultimap<std::string,User>();
     //Initial database has no file loaded
     fileLoaded = false;
 }
