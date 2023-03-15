@@ -39,17 +39,17 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         //Get Directors for Movie and tally up total points each director should add to a movie
         vector<string> dirs = thisMovie->get_directors();
         for(int j=0;j<dirs.size();j++){
-            directorMap[dirs[i]] = 20;
+            directorMap[dirs[i]] += 20;
         }
         //Get Actors for Movie and tally up total points each actor should add to a movie
         vector<string> acts = thisMovie->get_actors();
         for(int j=0;j<acts.size();j++){
-            actorMap[acts[i]] = 30;
+            actorMap[acts[i]] += 30;
         }
         //Get Genres for Movie and tally up total points each genre should add to a movie
         vector<string> gnr = thisMovie->get_genres();
         for(int j=0;j<gnr.size();j++){
-            genreMap[dirs[i]] = 1;
+            genreMap[dirs[i]] += 1;
         }
     }
     //hash table containing all movies with score >= 1
@@ -62,7 +62,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         vector<Movie*> movies =  mdb->get_movies_with_director(it->first);
         for(int i=0;i<movies.size();i++){
             //Add compatability score to movie
-            movieScores[movies[i]->get_id()] = it->second;
+            movieScores[movies[i]->get_id()] += it->second;
         }
     }
     
@@ -72,7 +72,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         vector<Movie*> movies =  mdb->get_movies_with_actor(it->first);
         for(int i=0;i<movies.size();i++){
             //Add compatability score to movie
-            movieScores[movies[i]->get_id()] = it->second;
+            movieScores[movies[i]->get_id()] += it->second;
         }
     }
     
@@ -82,8 +82,13 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         vector<Movie*> movies =  mdb->get_movies_with_genre(it->first);
         for(int i=0;i<movies.size();i++){
             //Add compatability score to movie
-            movieScores[movies[i]->get_id()] = it->second;
+            movieScores[movies[i]->get_id()] += it->second;
         }
+    }
+    
+    //Filter out movies that have already been watched
+    for(int i=0;i<hist.size();i++){
+        movieScores.erase(movieScores.find(hist[i]), movieScores.end());
     }
     
     //Store movies with compatability score >= 1 into MovieAndRank
@@ -105,6 +110,15 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         //If the movies don't have a same compatability score, movie with better score goes first
         else return a.compatibility_score > b.compatibility_score;
     });
+    
+    //Return requested number of movies
+    if(recommendedMovies.size()>movie_count){
+        vector<MovieAndRank> resizedVec;
+        for(int i=0;i<movie_count;i++){
+            resizedVec.push_back(recommendedMovies[i]);
+        }
+        return resizedVec;
+    }
     
     return recommendedMovies;
 }
