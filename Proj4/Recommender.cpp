@@ -91,5 +91,5 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     //Sort recomendedMovies
     sort(recommendedMovies.begin(),recommendedMovies.end(), [](MovieAndRank a, MovieAndRank b){ return a.compatibility_score > b.compatibility_score;});
     
-    return vector<MovieAndRank>();  // Replace this line with correct code.
+    return recommendedMovies;
 }
