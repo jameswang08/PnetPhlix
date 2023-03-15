@@ -9,7 +9,7 @@ using namespace std;
 UserDatabase::UserDatabase()
 {
    //Create empty tree to store user data
-    userDB = TreeMultimap<std::string,User*>();
+    userDB = TreeMultimap<std::string,User>();
     //Initial database has no file loaded
     fileLoaded = false;
 }
@@ -28,7 +28,9 @@ bool UserDatabase::load(const string& filename)
     //Process file
     //Get user's name
     string uName;
-    while(getline(infile,uName)){
+    //Return false if file is empty
+    if(!getline(infile,uName)) return false;
+    do{
         //Get user's email
         string email;
         getline(infile,email);
@@ -51,19 +53,17 @@ bool UserDatabase::load(const string& filename)
         getline(infile,str);
         
         //Add this user to tree of users
-        User* newUser = new User(uName, email, movieIDs);
+        User newUser = User(uName, email, movieIDs);
         userDB.insert(email,newUser);
-    }
-
+    }while(getline(infile,uName));
     return true;
 }
 
 User* UserDatabase::get_user_from_email(const string& email) const
 {
-    TreeMultimap<string, User*>::Iterator it = userDB.find(email);
+    TreeMultimap<string, User>::Iterator it = userDB.find(email);
     if(it.is_valid()){
-        User* usr = it.get_value();
-        return usr;
+        return &(it.get_value());
     }
     else return nullptr;
 }

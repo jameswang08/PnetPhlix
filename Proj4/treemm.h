@@ -8,20 +8,17 @@ class TreeMultimap
     struct Node{
         KeyType mKey;
         std::vector<ValueType> values;
-        Node* left;
-        Node* right;
+        Node* left = nullptr;
+        Node* right = nullptr;
     };
   
     Node* root;
   
     //Recursively delete each node
     void deleteNode(Node* aNode){
-        if(aNode==nullptr){
-            delete aNode;
-            return;
-        }
-        if(aNode->left != nullptr) deleteNode(aNode->left);
-        if(aNode->right != nullptr) deleteNode(aNode->left);
+        if(aNode==nullptr) return;
+        deleteNode(aNode->left);
+        deleteNode(aNode->right);
         delete aNode;
     }
   public:

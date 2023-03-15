@@ -28,6 +28,7 @@ using namespace std;
 
 const string USER_DATAFILE  = "/Users/jams/Desktop/School/CS32/Proj4/Proj4/users.txt";
 const string MOVIE_DATAFILE = "/Users/jams/Desktop/School/CS32/Proj4/Proj4/movies.txt";
+const string TEST_DATAFILE = "/Users/jams/Desktop/School/CS32/Proj4/Proj4/test.txt";
 
 class Dog{
 public:
@@ -127,7 +128,7 @@ int main() {
     
     //Userdatabase Tests
     UserDatabase udb;
-    if (0&&!udb.load(USER_DATAFILE))  // In skeleton, load always return false
+    if (!udb.load(USER_DATAFILE))  // In skeleton, load always return false
     {
         cout << "Failed to load user data file " << USER_DATAFILE << "!" << endl;
         return 1;
