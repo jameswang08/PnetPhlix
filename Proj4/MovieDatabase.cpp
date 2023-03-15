@@ -12,6 +12,12 @@ MovieDatabase::MovieDatabase()
     fileLoaded = false;
 }
 
+MovieDatabase::~MovieDatabase(){
+    for(int i=0;i<createdMovies.size();i++){
+        delete createdMovies[i];
+    }
+}
+
 bool MovieDatabase::load(const string& filename)
 {
     //Return false and do nothing if file has already been loaded
