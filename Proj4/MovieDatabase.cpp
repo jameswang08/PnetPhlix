@@ -7,7 +7,17 @@ using namespace std;
 
 MovieDatabase::MovieDatabase()
 {
-    // Replace this line with correct code.
+    //Initially no file loaded
+    fileLoaded = false;
+    
+    //Create empty trees
+    idTree = TreeMultimap<std::string, Movie*>();
+    dirTree = TreeMultimap<std::string, Movie*>();
+    actTree = TreeMultimap<std::string, Movie*>();
+    genreTree = TreeMultimap<std::string, Movie*>();
+    
+    //Movie Database starts out with zero movie objects
+    createdMovies = std::vector<Movie*>();
 }
 
 bool MovieDatabase::load(const string& filename)
