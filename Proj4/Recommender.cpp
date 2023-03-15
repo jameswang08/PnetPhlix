@@ -21,6 +21,9 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
 {
     vector<MovieAndRank> recommendedMovies;
     
+    //If movie count is zero or less return empty vector
+    if(movie_count<=0) return recommendedMovies;
+    
     //Get user's watch history
     vector<string> hist = udb->get_user_from_email(user_email)->get_watch_history();
     
@@ -89,7 +92,19 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     }
     
     //Sort recomendedMovies
-    sort(recommendedMovies.begin(),recommendedMovies.end(), [](MovieAndRank a, MovieAndRank b){ return a.compatibility_score > b.compatibility_score;});
+    sort(recommendedMovies.begin(),recommendedMovies.end(), [this](MovieAndRank a, MovieAndRank b){
+        //If the movies have same compatability score
+        if(a.compatibility_score==b.compatibility_score){
+            //If the movies have same rating, sort by alphabetical order
+            if(mdb->get_movie_from_id(a.movie_id)->get_rating() ==  mdb->get_movie_from_id(b.movie_id)->get_rating()){
+                return mdb->get_movie_from_id(a.movie_id)->get_title() >  mdb->get_movie_from_id(b.movie_id)->get_title();
+            }
+            //Otherwise movie with better rating goes first
+            else return mdb->get_movie_from_id(a.movie_id)->get_rating() >  mdb->get_movie_from_id(b.movie_id)->get_rating();
+        }
+        //If the movies don't have a same compatability score, movie with better score goes first
+        else return a.compatibility_score > b.compatibility_score;
+    });
     
     return recommendedMovies;
 }
