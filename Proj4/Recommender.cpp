@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <algorithm> //sort
 using namespace std;
 
 Recommender::Recommender(const UserDatabase& user_database,
@@ -18,6 +19,8 @@ Recommender::Recommender(const UserDatabase& user_database,
 
 vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int movie_count) const
 {
+    vector<MovieAndRank> recommendedMovies;
+    
     //Get user's watch history
     vector<string> hist = udb->get_user_from_email(user_email)->get_watch_history();
     
@@ -80,6 +83,13 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         }
     }
     
+    //Store movies with compatability score >= 1 into MovieAndRank
+    for(it=movieScores.begin();it!=movieScores.end();it++){
+        recommendedMovies.push_back(MovieAndRank(it->first,it->second));
+    }
+    
+    //Sort recomendedMovies
+    sort(recommendedMovies.begin(),recommendedMovies.end(), [](MovieAndRank a, MovieAndRank b){ return a.compatibility_score > b.compatibility_score;});
     
     return vector<MovieAndRank>();  // Replace this line with correct code.
 }
