@@ -155,21 +155,38 @@ int main() {
         cout << "Failed to load user data file " << MOVIE_DATAFILE << "!" << endl;
         return 1;
     }
-    //Test ID search
+//    //Test ID search
+//    for (;;)
+//    {
+//        cout << "Enter movie id (or quit): ";
+//        string id;
+//        getline(cin, id);
+//        if (id == "quit")
+//            return 0;
+//        Movie* m = mdb.get_movie_from_id(id);
+//        if (m == nullptr)
+//            cout << "No movie in the database has that id." << endl;
+//        else
+//            cout << "Found " << endl;
+//    }
+    //Test Director Search
     for (;;)
     {
-        cout << "Enter movie id (or quit): ";
-        string id;
-        getline(cin, id);
-        if (id == "quit")
+        cout << "Enter director (or quit): ";
+        string str;
+        getline(cin, str);
+        if (str == "quit")
             return 0;
-        Movie* m = mdb.get_movie_from_id(id);
-        if (m == nullptr)
-            cout << "No movie in the database has that id." << endl;
-        else
-            cout << "Found " << endl;
+        vector<Movie*> m = mdb.get_movies_with_director(str);
+        if (m.size()==0)
+            cout << "No movie in the database has that director." << endl;
+        else{
+            cout << "Movies with director:" << endl;
+            for(int i=0;i<m.size();i++){
+                cout << m[i]->get_title() << endl;
+            }
+        }
     }
-    //Test Director Search
     //Test Actor Search
     //Test Genre Search
 }

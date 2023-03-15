@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
 MovieDatabase::MovieDatabase()
@@ -35,7 +36,6 @@ bool MovieDatabase::load(const string& filename)
     //Return false if file is empty
     if(!getline(infile,id)) return false;
     do{
-        
         //Get movie name
         string nm;
         getline(infile,nm);
@@ -47,14 +47,15 @@ bool MovieDatabase::load(const string& filename)
         //Get list of directors
         string dirs;
         getline(infile, dirs);
-        
         //Split apart list by commas
         vector<string> directors;
+        string str;
         for(int i=0;i<dirs.size();i++){
-            string str;
             if(dirs[i]!=','){
                 str += dirs[i];
-                if(i==dirs.size()-1) directors.push_back(str);
+                if(i==dirs.size()-1){
+                    directors.push_back(str);
+                }
             }
             else{
                 directors.push_back(str);
@@ -67,8 +68,8 @@ bool MovieDatabase::load(const string& filename)
         getline(infile, acts);
         //Split apart list by commas
         vector<string> actors;
+        str = "";
         for(int i=0;i<acts.size();i++){
-            string str;
             if(acts[i]!=','){
                 str += acts[i];
                 if(i==acts.size()-1) actors.push_back(str);
@@ -84,8 +85,8 @@ bool MovieDatabase::load(const string& filename)
         getline(infile, grs);
         //Split apart list by commas
         vector<string> genres;
+        str = "";
         for(int i=0;i<grs.size();i++){
-            string str;
             if(grs[i]!=','){
                 str += grs[i];
                 if(i==grs.size()-1) genres.push_back(str);
@@ -102,7 +103,6 @@ bool MovieDatabase::load(const string& filename)
         infile.ignore(10000,'\n');
         
         //Consume empty line seperating users, if there is one
-        string str;
         if(!getline(infile,str)) break;
         
         //Add movie object to trees
@@ -121,7 +121,7 @@ bool MovieDatabase::load(const string& filename)
             for(int j=0;j<directors[i].size();j++){
                 directors[i][j] = tolower(directors[i][j]);
             }
-            dirTree.insert(directors[i],newMovie);
+            dirTree.insert(directors[i],newMovie);    
         }
         //Actor Tree
         for(int i=0;i<actors.size();i++){
