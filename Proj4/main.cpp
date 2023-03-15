@@ -169,24 +169,58 @@ int main() {
 //        else
 //            cout << "Found " << endl;
 //    }
-    //Test Director Search
+//    //Test Director Search
+//    for (;;)
+//    {
+//        cout << "Enter director (or quit): ";
+//        string str;
+//        getline(cin, str);
+//        if (str == "quit")
+//            return 0;
+//        vector<Movie*> m = mdb.get_movies_with_director(str);
+//        if (m.size()==0)
+//            cout << "No movie in the database has that director." << endl;
+//        else{
+//            cout << "Movies with director:" << endl;
+//            for(int i=0;i<m.size();i++){
+//                cout << m[i]->get_title() << endl;
+//            }
+//        }
+//    }
+//    //Test Actor Search
+//    for (;;)
+//    {
+//        cout << "Enter actor (or quit): ";
+//        string str;
+//        getline(cin, str);
+//        if (str == "quit")
+//            return 0;
+//        vector<Movie*> m = mdb.get_movies_with_actor(str);
+//        if (m.size()==0)
+//            cout << "No movie in the database has that actor." << endl;
+//        else{
+//            cout << "Movies with actor:" << endl;
+//            for(int i=0;i<m.size();i++){
+//                cout << m[i]->get_title() << endl;
+//            }
+//        }
+//    }
+    //Test Genre Search
     for (;;)
     {
-        cout << "Enter director (or quit): ";
+        cout << "Enter genre (or quit): ";
         string str;
         getline(cin, str);
         if (str == "quit")
             return 0;
-        vector<Movie*> m = mdb.get_movies_with_director(str);
+        vector<Movie*> m = mdb.get_movies_with_genre(str);
         if (m.size()==0)
-            cout << "No movie in the database has that director." << endl;
+            cout << "No movie in the database has that genre." << endl;
         else{
-            cout << "Movies with director:" << endl;
+            cout << "Movies with genre:" << endl;
             for(int i=0;i<m.size();i++){
                 cout << m[i]->get_title() << endl;
             }
         }
     }
-    //Test Actor Search
-    //Test Genre Search
 }

@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <iostream>
 using namespace std;
 
 MovieDatabase::MovieDatabase()
@@ -137,7 +136,7 @@ bool MovieDatabase::load(const string& filename)
             for(int j=0;j<genres[i].size();j++){
                 genres[i][j] = tolower(genres[i][j]);
             }
-            dirTree.insert(genres[i],newMovie);
+            genreTree.insert(genres[i],newMovie);
         }
         
         //Add movie object to list of movies that were dynamically allocated
