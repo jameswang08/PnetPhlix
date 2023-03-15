@@ -17,6 +17,7 @@ class MovieDatabase
     std::vector<Movie*> get_movies_with_director(const std::string& director) const;
     std::vector<Movie*> get_movies_with_actor(const std::string& actor) const;
     std::vector<Movie*> get_movies_with_genre(const std::string& genre) const;
+    
   private:
     bool fileLoaded; //Flag for whether file has already been loaded or not
     TreeMultimap<std::string, Movie*> idTree; //Tree w/ movie ID as key

@@ -17,6 +17,7 @@
   // data files to makde debuggiing easier, so you can replace the string
   // literals with the names of those smaller files.
 #include "UserDatabase.h"
+#include "MovieDatabase.h"
 #include "User.h"
 #include "Movie.h"
 #include "treemm.h"
@@ -126,27 +127,49 @@ int main() {
 //    delete d1;
 //    delete d2;
     
-    //Userdatabase Tests
-    UserDatabase udb;
-    if (!udb.load(USER_DATAFILE))
-    {
-        cout << "Failed to load user data file " << USER_DATAFILE << "!" << endl;
-        return 1;
-    }
-    for (;;)
-    {
-        cout << "Enter user email address (or quit): ";
-        string email;
-        getline(cin, email);
-        if (email == "quit")
-            return 0;
-        User* u = udb.get_user_from_email(email);
-        if (u == nullptr)
-            cout << "No user in the database has that email address." << endl;
-        else
-            cout << "Found " << u->get_full_name() << endl;
-    }
+//    //Userdatabase Tests
+//    UserDatabase udb;
+//    if (!udb.load(USER_DATAFILE))
+//    {
+//        cout << "Failed to load user data file " << USER_DATAFILE << "!" << endl;
+//        return 1;
+//    }
+//    for (;;)
+//    {
+//        cout << "Enter user email address (or quit): ";
+//        string email;
+//        getline(cin, email);
+//        if (email == "quit")
+//            return 0;
+//        User* u = udb.get_user_from_email(email);
+//        if (u == nullptr)
+//            cout << "No user in the database has that email address." << endl;
+//        else
+//            cout << "Found " << u->get_full_name() << endl;
+//    }
     
     //MovieDatabase Tests
-    
+    MovieDatabase mdb;
+    if (!mdb.load(MOVIE_DATAFILE))
+    {
+        cout << "Failed to load user data file " << MOVIE_DATAFILE << "!" << endl;
+        return 1;
+    }
+    //Test ID search
+    for (;;)
+    {
+        cout << "Enter movie id (or quit): ";
+        string id;
+        getline(cin, id);
+        if (id == "quit")
+            return 0;
+        Movie* m = mdb.get_movie_from_id(id);
+        if (m == nullptr)
+            cout << "No movie in the database has that id." << endl;
+        else
+            cout << "Found " << endl;
+    }
+    //Test Director Search
+    //Test Actor Search
+    //Test Genre Search
 }

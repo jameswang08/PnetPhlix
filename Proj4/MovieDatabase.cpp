@@ -35,6 +35,7 @@ bool MovieDatabase::load(const string& filename)
     //Return false if file is empty
     if(!getline(infile,id)) return false;
     do{
+        
         //Get movie name
         string nm;
         getline(infile,nm);
@@ -46,6 +47,7 @@ bool MovieDatabase::load(const string& filename)
         //Get list of directors
         string dirs;
         getline(infile, dirs);
+        
         //Split apart list by commas
         vector<string> directors;
         for(int i=0;i<dirs.size();i++){
@@ -105,30 +107,54 @@ bool MovieDatabase::load(const string& filename)
         
         //Add movie object to trees
         Movie* newMovie = new Movie(id,nm,yr,directors,actors,genres,rating);
+        
+        //Make ID lowercase
+        for(int i=0;i<id.size();i++){
+            id[i] = tolower(id[i]);
+        }
         //ID Tree
         idTree.insert(id,newMovie);
+        
         //Director Tree
         for(int i=0;i<directors.size();i++){
+            //Make director key lowercase
+            for(int j=0;j<directors[i].size();j++){
+                directors[i][j] = tolower(directors[i][j]);
+            }
             dirTree.insert(directors[i],newMovie);
         }
         //Actor Tree
         for(int i=0;i<actors.size();i++){
+            //Make actors key lowercase
+            for(int j=0;j<actors[i].size();j++){
+                actors[i][j] = tolower(actors[i][j]);
+            }
             actTree.insert(actors[i],newMovie);
         }
         //Genre Tree
         for(int i=0;i<genres.size();i++){
+            //Make actors key lowercase
+            for(int j=0;j<genres[i].size();j++){
+                genres[i][j] = tolower(genres[i][j]);
+            }
             dirTree.insert(genres[i],newMovie);
         }
         
         //Add movie object to list of movies that were dynamically allocated
         createdMovies.push_back(newMovie);
     }while(getline(infile,id));
+    
     return true;
 }
 
 Movie* MovieDatabase::get_movie_from_id(const string& id) const
 {
-    TreeMultimap<string, Movie*>::Iterator it = idTree.find(id);
+    string tId = id;
+    //Make ID lowercase
+    for(int i=0;i<tId.size();i++){
+        tId[i] = tolower(tId[i]);
+    }
+    TreeMultimap<string, Movie*>::Iterator it = idTree.find(tId);
     if(it.is_valid()){
         return it.get_value();
     }
@@ -137,7 +163,12 @@ Movie* MovieDatabase::get_movie_from_id(const string& id) const
 
 vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) const
 {
-    TreeMultimap<string, Movie*>::Iterator it = dirTree.find(director);
+    string tDir = director;
+    //Make Director lowercase
+    for(int i=0;i<tDir.size();i++){
+        tDir[i] = tolower(tDir[i]);
+    }
+    TreeMultimap<string, Movie*>::Iterator it = dirTree.find(tDir);
     vector<Movie*> movies;
     while(it.is_valid()){
         movies.push_back(it.get_value());
@@ -148,7 +179,12 @@ vector<Movie*> MovieDatabase::get_movies_with_director(const string& director) c
 
 vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
 {
-    TreeMultimap<string, Movie*>::Iterator it = actTree.find(actor);
+    string tAct = actor;
+    //Make Actor lowercase
+    for(int i=0;i<tAct.size();i++){
+        tAct[i] = tolower(tAct[i]);
+    }
+    TreeMultimap<string, Movie*>::Iterator it = actTree.find(tAct);
     vector<Movie*> movies;
     while(it.is_valid()){
         movies.push_back(it.get_value());
@@ -159,7 +195,12 @@ vector<Movie*> MovieDatabase::get_movies_with_actor(const string& actor) const
 
 vector<Movie*> MovieDatabase::get_movies_with_genre(const string& genre) const
 {
-    TreeMultimap<string, Movie*>::Iterator it = genreTree.find(genre);
+    string tGnr = genre;
+    //Make genre lowercase
+    for(int i=0;i<tGnr.size();i++){
+        tGnr[i] = tolower(tGnr[i]);
+    }
+    TreeMultimap<string, Movie*>::Iterator it = genreTree.find(tGnr);
     vector<Movie*> movies;
     while(it.is_valid()){
         movies.push_back(it.get_value());
