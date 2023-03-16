@@ -24,8 +24,11 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     //If movie count is zero or less return empty vector
     if(movie_count<=0) return recommendedMovies;
     
+    User* usr = udb->get_user_from_email(user_email);
+    //Return empty vector if user isn't found
+    if(usr == nullptr) return recommendedMovies;
     //Get user's watch history
-    vector<string> hist = udb->get_user_from_email(user_email)->get_watch_history();
+    vector<string> hist = usr->get_watch_history();
     
     unordered_map<string,int> directorMap;
     unordered_map<string,int> actorMap;
@@ -88,7 +91,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     
     //Filter out movies that have already been watched
     for(int i=0;i<hist.size();i++){
-        movieScores.erase(movieScores.find(hist[i]), movieScores.end());
+        movieScores.erase(hist[i]);
     }
     
     //Store movies with compatability score >= 1 into MovieAndRank
