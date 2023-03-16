@@ -43,6 +43,9 @@
 		3078086829BD9CC00040B5D8 /* UserDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDatabase.h; sourceTree = "<group>"; };
 		3078086B29BD9DB80040B5D8 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
 		3078086C29BD9DC00040B5D8 /* movies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movies.txt; sourceTree = "<group>"; };
+		30917A5A29C2FA8F0022FE44 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
+		30917A5B29C2FA8F0022FE44 /* test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test1.txt; sourceTree = "<group>"; };
+		30917A5C29C2FA8F0022FE44 /* test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,19 +79,22 @@
 			isa = PBXGroup;
 			children = (
 				3078085329BD9BC40040B5D8 /* main.cpp */,
+				3078086429BD9C9C0040B5D8 /* User.cpp */,
+				3078086529BD9C9C0040B5D8 /* User.h */,
+				3078086729BD9CC00040B5D8 /* UserDatabase.cpp */,
+				3078086829BD9CC00040B5D8 /* UserDatabase.h */,
 				3078085A29BD9BF50040B5D8 /* Movie.cpp */,
 				3078085B29BD9BF50040B5D8 /* Movie.h */,
 				3078085D29BD9C230040B5D8 /* MovieDatabase.cpp */,
 				3078085E29BD9C230040B5D8 /* MovieDatabase.h */,
-				3078086729BD9CC00040B5D8 /* UserDatabase.cpp */,
-				3078086829BD9CC00040B5D8 /* UserDatabase.h */,
-				3078086429BD9C9C0040B5D8 /* User.cpp */,
-				3078086529BD9C9C0040B5D8 /* User.h */,
-				3078086329BD9C860040B5D8 /* treemm.h */,
 				3078086029BD9C5B0040B5D8 /* Recommender.cpp */,
 				3078086129BD9C5B0040B5D8 /* Recommender.h */,
+				3078086329BD9C860040B5D8 /* treemm.h */,
 				3078086B29BD9DB80040B5D8 /* users.txt */,
 				3078086C29BD9DC00040B5D8 /* movies.txt */,
+				30917A5A29C2FA8F0022FE44 /* test.txt */,
+				30917A5B29C2FA8F0022FE44 /* test1.txt */,
+				30917A5C29C2FA8F0022FE44 /* test2.txt */,
 			);
 			path = Proj4;
 			sourceTree = "<group>";

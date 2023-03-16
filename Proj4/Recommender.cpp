@@ -45,17 +45,17 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         //Get Directors for Movie and tally up total points each director should add to a movie
         vector<string> dirs = thisMovie->get_directors();
         for(int j=0;j<dirs.size();j++){
-            directorMap[dirs[i]] += 20;
+            directorMap[dirs[j]] += 20;
         }
         //Get Actors for Movie and tally up total points each actor should add to a movie
         vector<string> acts = thisMovie->get_actors();
         for(int j=0;j<acts.size();j++){
-            actorMap[acts[i]] += 30;
+            actorMap[acts[j]] += 30;
         }
         //Get Genres for Movie and tally up total points each genre should add to a movie
         vector<string> gnr = thisMovie->get_genres();
         for(int j=0;j<gnr.size();j++){
-            genreMap[gnr[i]] += 1;
+            genreMap[gnr[j]] += 1;
         }
     }
     

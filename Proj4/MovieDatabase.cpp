@@ -138,11 +138,9 @@ bool MovieDatabase::load(const string& filename)
         
         //Add movie object to list of movies that were dynamically allocated
         createdMovies.push_back(newMovie);
-        
         //Consume empty line seperating users, if there is one
         if(!getline(infile,str)) break;
     }while(getline(infile,id));
-    
     return true;
 }
 
