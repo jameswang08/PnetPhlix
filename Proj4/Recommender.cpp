@@ -34,6 +34,9 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
     unordered_map<string,int> actorMap;
     unordered_map<string,int> genreMap;
     
+    //hash table containing all movies with score >= 1
+    unordered_map<string, int> movieScores;
+    
     //Loop through user's watch history
     for(int i=0;i<hist.size();i++){
         //Get movie assosciated with ID
@@ -52,11 +55,9 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         //Get Genres for Movie and tally up total points each genre should add to a movie
         vector<string> gnr = thisMovie->get_genres();
         for(int j=0;j<gnr.size();j++){
-            genreMap[dirs[i]] += 1;
+            genreMap[gnr[i]] += 1;
         }
     }
-    //hash table containing all movies with score >= 1
-    unordered_map<string, int> movieScores;
     
     //Find movies assosciated w/ director and add compatability score to movie
     unordered_map<string, int>::iterator it;
