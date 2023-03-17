@@ -106,7 +106,7 @@ vector<MovieAndRank> Recommender::recommend_movies(const string& user_email, int
         if(a.compatibility_score==b.compatibility_score){
             //If the movies have same rating, sort by alphabetical order
             if(mdb->get_movie_from_id(a.movie_id)->get_rating() ==  mdb->get_movie_from_id(b.movie_id)->get_rating()){
-                return mdb->get_movie_from_id(a.movie_id)->get_title() >  mdb->get_movie_from_id(b.movie_id)->get_title();
+                return mdb->get_movie_from_id(a.movie_id)->get_title() <  mdb->get_movie_from_id(b.movie_id)->get_title();
             }
             //Otherwise movie with better rating goes first
             else return mdb->get_movie_from_id(a.movie_id)->get_rating() >  mdb->get_movie_from_id(b.movie_id)->get_rating();
