@@ -1,6 +1,8 @@
 #ifndef TREEMULTIMAP_INCLUDED
 #define TREEMULTIMAP_INCLUDED
 
+#include <vector>
+
 template <typename KeyType, typename ValueType>
 class TreeMultimap
 {
@@ -42,11 +44,7 @@ class TreeMultimap
 
         ValueType& get_value() const
         {
-            if(is_valid()){
-                return (*(vecPointer))[n];
-            }
-            //If iterator isn't valid, throw error
-            throw 1;
+            return (*(vecPointer))[n];
         }
 
         bool is_valid() const
